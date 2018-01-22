@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorator="layout">
+<head>
+    <title>Add task</title>
+    <link rel="stylesheet" th:href="@{/css/taskPageStyle.css}" type="text/css"/>
+</head>
+
+<body>
+<div layout:fragment="content">
+    <form class="task_form" th:action="@{/task/addTask}" method="post" th:object="${task}">
+        <input type="hidden" name="projectId" th:value="${projectId}"/>
+
+        <label for="task_name" th:text="#{task.form.name}"></label>
+        <input type="text" id="task_name" class="form-control" th:placeholder="#{task.form.name}"
+               th:required="required_field" autocomplete="off" th:field="*{taskName}"/>
+
+        <label for="task_text" th:text="#{task.form.text}"></label>
+        <textarea id="task_text" th:cols="30" th:rows="6" class="form-control" th:placeholder="#{task.form.text}"
+                  th:required="required_field" th:field="*{text}"></textarea>
+
+        <label for="statuses" th:text="#{task.form.establish.status}"></label>
+        <th:block th:each="status : ${allStatuses}" >
+            <input type="radio" id="statuses"
+                   th:checked="${true}" th:field="*{statusId}" th:value="${status.id}" th:text="${status.statusName}"/>
+        </th:block>
+
+        <label for="users" th:text="#{add.task.for.developer}"></label>
+        <div id="users" class="wrapper_table">
+            <table class="table">
+                <th:block th:if="${!allDevelopers.isEmpty()}">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th th:text="#{user.first.name}"></th>
+                        <th th:text="#{user.last.name}"></th>
+                        <th th:text="#{user.username}"></th>
+                        <th th:text="#{user.email}"></th>
+                        <th th:text="#{user.add}"></th>
+                    </tr>
+                    </thead>
+
+                    <tbody class="table_my_style">
+                    <tr th:each="user : ${allDevelopers}">
+                        <td th:text="${user.id}"></td>
+                        <td th:text="${user.firstName}"></td>
+                        <td th:text="${user.lastName}"></td>
+                        <td th:text="${user.username}"></td>
+                        <td th:text="${user.email}"></td>
+                        <td>
+                            <input type="radio" th:checked="${true}" th:field="*{userId}" th:value="${user.id}"/>
+                        </td>
+                    </tr>
+                    </tbody>
+                </th:block>
+
+                <th:block th:if="${allDevelopers.isEmpty()}">
+                    <p class="alert alert-success" th:text="#{there.is.not.free.developers}"></p>
+                </th:block>
+            </table>
+        </div>
+        <button type="submit" class="btn btn-default submit_button" th:text="#{button.add}"></button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>Search</title>
+    <link rel="stylesheet" th:href="@{/css/mainPage.css}" type="text/css"/>
+</head>
+
+<body>
+<div layout:fragment="content">
+    <div class="wrapper_table_search_result">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th th:text="#{login.form.first.name}"></th>
+                <th th:text="#{login.form.last.name}"></th>
+                <th th:text="#{login.form.username}"></th>
+                <th th:text="#{register.form.email}"></th>
+                <th th:text="#{user.role}"></th>
+            </tr>
+            </thead>
+
+            <tbody class="table_my_style" th:each="user : ${users}">
+            <tr>
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.firstName}"></td>
+                <td th:text="${user.lastName}"></td>
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.role.name}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+.table_my_style {
+    background: #F9F9F9;
+}
+.table th {
+    color: #F9F9F9;
+}
+.table .fa-plus {  color: dodgerblue;  }
+.table .fa-pencil-square {  color: dodgerblue;  }
+.table .fa-tasks {  color: dodgerblue;  }
+.table .fa-pencil-square:hover {  color: darkblue;  }
+.table .fa-tasks:hover {  color: darkblue;  }
+.table .fa-plus:hover {  color: darkblue;  }
+
+.wrapper_table {
+    overflow-y: scroll;
+    max-height: 370px;
+}
+.wrapper_table_search_result {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow-y: scroll;
+    max-height: 450px;
+    width: 600px;
+}
+
+.pagination {
+    z-index: 9999;
+    position: absolute;
+    bottom: 5px;
+    margin: auto;
+    min-width: 240px;
+}
+
+.form_add_project {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 600px;
+}
+.form_add_project label {
+    color: #ffffff;
+}
+
+.submit_button {
+    margin-top: 10px;
+    width: 100%;
+    border: 0;
+    border-radius: 5px;
+    outline: none;
+    color: #999;
+    font-weight: 600;
+    cursor: pointer;
+}
+.submit_button:hover {
+    border: 0;
+    outline: none;
+    background: #149236;
+    color: #ffffff;
+    box-shadow: white 0 0 10px 2px;
+}

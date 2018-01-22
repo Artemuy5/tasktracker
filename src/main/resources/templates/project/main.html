@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorator="layout">
+<head>
+    <title>Task tracker</title>
+    <link rel="stylesheet" th:href="@{/css/mainPage.css}" type="text/css"/>
+</head>
+
+<body>
+<div layout:fragment="content">
+    <th:block th:if="${projects.isEmpty()}">
+        <h3 class="alert alert-success"><strong th:text="#{amount.of.projects}"></strong></h3>
+    </th:block>
+
+    <th:block th:if="${!projects.isEmpty()}">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th th:text="#{project.name}"></th>
+                <th th:text="#{project.date}"></th>
+                <th th:text="#{project.tasks}"></th>
+                <th sec:authorize="hasRole('MANAGER')" th:text="#{project.add.task}"></th>
+                <th sec:authorize="hasRole('MANAGER')" th:text="#{project.edit}"></th>
+                <th sec:authorize="hasRole('MANAGER')" th:text="#{project.remove}"></th>
+            </tr>
+            </thead>
+
+            <tbody class="table_my_style">
+            <tr th:each="project : ${projects}">
+                <td th:text="${project.id}"></td>
+                <td th:text="${project.projectName}"></td>
+                <td th:text="${project.dateAdded}"></td>
+                <td>
+                    <a th:href="@{|/task/tasks/${project.id}|}"><i class="fa fa-tasks fa-lg" aria-hidden="true"></i></a>
+                </td>
+                <td>
+                    <a sec:authorize="hasRole('MANAGER')" th:href="@{|/task/addTask/${project.id}/|}">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                    </a>
+                </td>
+                <td>
+                    <a sec:authorize="hasRole('MANAGER')" th:href="@{|/project/editProject/${project.id}/|}">
+                        <i class="fa fa-pencil-square fa-lg" aria-hidden="true"></i>
+                    </a>
+                </td>
+                <td>
+                    <a sec:authorize="hasRole('MANAGER')" th:href="@{|/project/${project.id}/remove|}">
+                        <i class="fa fa-trash fa-lg" aria-hidden="true"></i>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </th:block>
+
+    <div class="pagination">
+        <th:block th:include="fragments/pagination :: pagination"/>
+    </div>
+</div>
+</body>
+</html>

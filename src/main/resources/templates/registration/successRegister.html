@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>Success</title>
+</head>
+
+<body>
+<div layout:fragment="content">
+    <div class="container">
+        <h2 class="alert alert-success"><strong th:text="#{success.registration}"></strong></h2>
+    </div>
+</div>
+</body>
+</html>

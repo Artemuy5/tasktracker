@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>Success</title>
+</head>
+
+<body>
+<div layout:fragment="content">
+    <div class="container">
+        <span th:if="${param.token != null}">Your token is:</span>
+        <span th:text="${param.token}">token</span>
+        <br/>
+        <a class="btn btn-primary" th:href="@{/login}" th:text="#{login.title}"></a>
+    </div>
+</div>
+</body>
+</html>

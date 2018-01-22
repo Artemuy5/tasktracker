@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>Error</title>
+    <link rel="stylesheet" th:href="@{/css/loginAndRegistration.css}" type="text/css"/>
+</head>
+
+<body>
+<div layout:fragment="content">
+    <h3 class="alert alert-danger"><strong th:text="#{error.of.confirmation}"></strong></h3>
+</div>
+</body>
+</html>

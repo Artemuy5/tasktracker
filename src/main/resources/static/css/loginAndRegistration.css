@@ -1,0 +1,45 @@
+.caption_login_registration_form {
+    text-align: center;
+    margin-bottom: 0;
+    color: #999;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.login_registration_form {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 300px;
+    width: 300px;
+}
+
+.login_registration_labels {
+    font-weight: 600;
+    font-size: 16px;
+    color: #999;
+    margin: 10px 0 0 0;
+}
+
+.submit_button {
+    margin-top: 25px;
+    width: 100%;
+    border: 0;
+    border-radius: 5px;
+    outline: none;
+    color: #999;
+    font-weight: 600;
+    cursor: pointer;
+}
+.submit_button:hover {
+    border: 0;
+    outline: none;
+    background: #149236;
+    color: #ffffff;
+    box-shadow: white 0 0 10px 2px;
+}
+
+.fa {
+    width: 15px;
+}

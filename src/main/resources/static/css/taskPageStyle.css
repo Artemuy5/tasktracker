@@ -1,0 +1,165 @@
+.task_form {
+    min-width: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.task_form label {
+    color: #ffffff;
+}
+
+.table_my_style {
+    background: #F9F9F9;
+}
+.table th {
+    color: #F9F9F9;
+}
+
+#task_text {
+    resize: none;
+}
+
+#statuses {
+    margin-left: 30px;
+}
+
+.submit_button {
+    margin-top: 10px;
+    width: 100%;
+    border: 0;
+    border-radius: 5px;
+    outline: none;
+    color: #999;
+    font-weight: 600;
+    cursor: pointer;
+}
+.submit_button:hover {
+    border: 0;
+    outline: none;
+    background: #149236;
+    color: #ffffff;
+    box-shadow: white 0 0 10px 2px;
+}
+
+/*--------------------------------------------------------------------------------------------------------------------*/
+
+.fa-file-text {  color: dodgerblue;  }
+.fa-file-text:hover {  color: darkblue;  }
+
+.wrapper_table {
+    overflow-y: scroll;
+    max-height: 150px;
+}
+
+/*--------------------------------------------------------------------------------------------------------------------*/
+
+.current_task {
+    margin-top: 50px;
+}
+
+.caption {
+    font-weight: 600;
+    background: slategrey;
+    border-radius: 5px;
+    color: #ffffff;
+    padding: 5px 10px 5px 10px;
+}
+.text_task {
+    background: slategrey;
+    border-radius: 5px;
+    color: #ffffff;
+    padding: 5px 10px 5px 10px;
+}
+.status_task {
+    font-size: 14px;
+    font-weight: 600;
+    background: slategrey;
+    border-radius: 5px;
+    color: #ffffff;
+    padding: 5px 10px 5px 10px;
+}
+
+.submit_button {
+    position: relative;
+    margin: 10px 10px 10px 0;
+    width: 190px;
+    border: 0;
+    border-radius: 5px;
+    outline: none;
+    color: #999;
+    font-weight: 600;
+    cursor: pointer;
+}
+.submit_button:hover {
+    border: 0;
+    outline: none;
+    background: #149236;
+    color: #ffffff;
+    box-shadow: white 0 0 10px 2px;
+}
+
+.delete_task{
+    position: relative;
+    margin: 10px 0 10px 0;
+    width: 190px;
+    border: 0;
+    border-radius: 5px;
+    outline: none;
+    color: #999;
+    font-weight: 600;
+    cursor: pointer;
+}
+.delete_task:hover {
+    border: 0;
+    outline: none;
+    background: #D9230F;
+    color: #ffffff;
+    box-shadow: white 0 0 10px 2px;
+}
+.myTextarea {
+    resize: none;
+}
+
+.block_comments {
+    margin-top: 50px;
+    height: 70vh;
+    overflow-y: scroll;
+}
+
+.comment_text {
+    position: relative;
+    color: darkmagenta;  }
+.comment_date_author {
+    position: relative;
+    color: darkmagenta;  }
+.comment_text h6 {
+    padding-left: 20px;
+    color: #ffffff;
+    font-weight: 600;
+}
+.comment_date_author h6 {
+    padding-left: 20px;
+    color: #ffffff;  }
+.comment_text i {
+    position: absolute;
+    top: 2px;
+    left: 1px;
+}
+.comment_date_author i {
+    position: absolute;
+    bottom: 1px;
+    left: 1px;
+}
+.remove_comment {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+.comment_wrapper {
+    position: relative;
+    background: slategrey;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    padding: 5px 0 5px 10px;
+}

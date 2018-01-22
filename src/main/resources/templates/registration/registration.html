@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
+<head>
+    <title>Registration</title>
+    <link rel="stylesheet" th:href="@{/css/loginAndRegistration.css}" type="text/css"/>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="login_registration_form">
+
+        <h3 class="caption_login_registration_form" th:text="#{reg.title}"></h3>
+
+        <form th:action="@{/registration}" method="post" th:object="${user}">
+            <label for="firstName" class="login_registration_labels" th:text="#{login.form.first.name}"></label>
+            <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-address-card-o" aria-hidden="true"></i></div>
+                <input type="text" id="firstName" class="form-control"  th:placeholder="#{login.form.first.name}"
+                       th:required="required_field" autocomplete="off" th:field="*{firstName}"/>
+            </div>
+            <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></p>
+
+            <label for="lastName" class="login_registration_labels" th:text="#{login.form.last.name}"></label>
+            <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-address-card-o" aria-hidden="true"></i></div>
+                <input type="text" id="lastName" class="form-control"  th:placeholder="#{login.form.last.name}"
+                       th:required="required_field" autocomplete="off" th:field="*{lastName}"/>
+            </div>
+            <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></p>
+
+            <label for="username" class="login_registration_labels" th:text="#{login.form.username}"></label>
+            <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></div>
+                <input type="text" id="username" class="form-control"  th:placeholder="#{login.form.username}"
+                       th:required="required_field" autocomplete="off" th:field="*{username}"/>
+            </div>
+            <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
+
+            <label for="password" class="login_registration_labels" th:text="#{login.form.password}"></label>
+            <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-unlock-alt pass_icon" aria-hidden="true"></i></div>
+                <input type="password" id="password" class="form-control"  th:placeholder="#{login.form.password}"
+                       th:required="required_field" autocomplete="off" th:field="*{password}"/>
+            </div>
+            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+
+
+            <label for="confirmPassword" class="login_registration_labels" th:text="#{register.form.confirm.password}"></label>
+            <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-unlock-alt pass_icon" aria-hidden="true"></i></div>
+                <input type="password" id="confirmPassword" class="form-control"  th:placeholder="#{register.form.confirm.password}"
+                       th:required="required_field" autocomplete="off" th:field="*{confirmPassword}"/>
+            </div>
+            <p th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></p>
+
+            <label for="email" class="login_registration_labels" th:text="#{register.form.email}"></label>
+            <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-envelope pass_icon" aria-hidden="true"></i></div>
+                <input type="email" id="email" class="form-control" th:placeholder="#{register.form.email}"
+                       th:required="required_field" autocomplete="off" th:field="*{email}"/>
+            </div>
+            <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+
+            <button type="submit" class="btn btn-default submit_button" th:text="#{register.form.button}"></button>
+
+        </form>
+
+    </div>
+</div>
+</body>
+</html>

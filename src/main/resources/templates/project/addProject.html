@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorator="layout">
+<head>
+    <title>Add project</title>
+    <link rel="stylesheet" th:href="@{/css/mainPage.css}" type="text/css"/>
+</head>
+
+<body>
+<div layout:fragment="content">
+    <form class="form_add_project" th:action="@{/project/addProject}" method="post" th:object="${project}">
+        <input type="hidden" th:field="*{userId}"/> <!--для манагера-->
+
+        <label for="projectName" th:text="#{add.project.projectName}"></label>
+        <input type="text" id="projectName" class="form-control" th:placeholder="#{add.project.projectName}"
+               th:required="required_field" autocomplete="off" maxlength="80" th:field="*{projectName}"/>
+
+        <label for="users" th:text="#{add.project.select.developers}"></label>
+        <div id="users" class="wrapper_table">
+            <table class="table">
+                <th:block th:if="${!allUsers.isEmpty()}">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th th:text="#{user.first.name}"></th>
+                        <th th:text="#{user.last.name}"></th>
+                        <th th:text="#{user.username}"></th>
+                        <th th:text="#{user.email}"></th>
+                        <th th:text="#{user.add}"></th>
+                    </tr>
+                    </thead>
+
+                    <tbody class="table_my_style">
+                    <tr th:each="user : ${allUsers}">
+                        <td th:text="${user.id}"></td>
+                        <td th:text="${user.firstName}"></td>
+                        <td th:text="${user.lastName}"></td>
+                        <td th:text="${user.username}"></td>
+                        <td th:text="${user.email}"></td>
+                        <td>
+                            <input type="checkbox" th:checked="${true}" th:field="*{developers}" th:value="${user.id}"/>
+                        </td>
+                    </tr>
+                    </tbody>
+                </th:block>
+
+                <th:block th:if="${allUsers.isEmpty()}">
+                    <p class="alert alert-success" th:text="#{there.is.not.free.developers}"></p>
+                </th:block>
+
+                <p class="alert alert-danger" th:if="${#fields.hasErrors('projectName')}" th:errors="*{projectName}"></p>
+            </table>
+        </div>
+
+        <button type="submit" class="btn btn-default submit_button" th:text="#{button.add}"></button>
+    </form>
+</div>
+</body>
+</html>

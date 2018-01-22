@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta name="base-url" id="baseUrl" th:content="@{/}"/>
+    <link rel="stylesheet" href="https://bootswatch.com/3/simplex/bootstrap.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" th:href="@{/font-awesome/css/font-awesome.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css"/>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/script.js}"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Roboto+Slab:700');
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+
+        <div class="navbar-header"><a class="navbar-brand navbarComponent" th:href="@{/project/main}" th:text="#{brand}"></a></div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
+                       th:text="#{language}">
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a th:href="@{?lang=en}">English</a></li>
+                        <li><a th:href="@{?lang=ru}">Русский</a></li>
+                    </ul>
+                </li>
+
+                <th:block sec:authorize="!isAuthenticated()">
+                    <li class="navbarComponent"><a th:href="@{/login}" th:text="#{login.title}"></a></li>
+                    <li class="navbarComponent"><a th:href="@{/registration}" th:text="#{reg.title}"></a></li>
+                </th:block>
+
+                <th:block sec:authorize="isAuthenticated()">
+                    <li sec:authorize="hasRole('MANAGER')">
+                        <a th:href="@{/project/addProject}" th:text="#{add.project}"></a>
+                    </li>
+
+                    <li sec:authorize="hasRole('MANAGER')" class="navbar-form navbar-left" th:action="@{/}">
+                        <a th:href="@{/project/searchform}" th:text="#{search}"></a>
+                    </li>
+
+                    <li>
+                        <a th:href="@{/logout}" th:text="#{logout}"></a>
+                    </li>
+                </th:block>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <div class="background"></div>
+    <div class="social_networking_sites">
+        <a th:href="@{https://www.linkedin.com/in/artem-shapovalov-27520b153/}">
+            <i class="fa fa-linkedin-square fa-2x fa-social" aria-hidden="true"></i>
+        </a><br/>
+        <a th:href="@{https://github.com/Artemuy5}">
+            <i class="fa fa-github fa-2x fa-social" aria-hidden="true"></i>
+        </a><br/>
+        <a th:href="@{https://vk.com/artemuy5}">
+            <i class="fa fa-vk fa-lg fa-social" aria-hidden="true"></i>
+        </a>
+    </div>
+
+    <div class="container" layout:fragment="content"></div>
+</main>
+
+<footer>
+    <div class="copyright_creator"><p><strong th:text="#{creator.copyright}"></strong></p></div>
+</footer>
+</body>
+</html>

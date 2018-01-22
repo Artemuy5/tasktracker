@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>Tasks</title>
+    <link rel="stylesheet" th:href="@{/css/taskPageStyle.css}" type="text/css"/>
+</head>
+
+<body>
+<div layout:fragment="content">
+    <div>
+        <th:block th:if="${tasks.isEmpty()}">
+            <h3 class="alert alert-success"><strong th:text="#{amount.of.tasks}"></strong></h3>
+        </th:block>
+
+        <th:block th:if="${!tasks.isEmpty()}">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th th:text="#{task.form.name}"></th>
+                    <th th:text="#{task.form.date}"></th>
+                    <th th:text="#{task.form.status}"></th>
+                    <th th:text="#{task.form.description}"></th>
+                    <th sec:authorize="hasRole('MANAGER')" th:text="#{delete.task}"></th>
+                </tr>
+                </thead>
+
+                <tbody class="table_my_style">
+                <tr th:each="task : ${tasks}">
+                    <td th:text="${task.id}"></td>
+                    <td th:text="${task.taskName}"></td>
+                    <td th:text="${task.dateAdded}"></td>
+                    <td th:text="${task.status.statusName}"></td>
+                    <td>
+                        <a th:href="@{|/task/task/${task.id}|}">
+                            <i class="fa fa-file-text" aria-hidden="true"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a sec:authorize="hasRole('MANAGER')" th:href="@{|/task/${task.id}/remove|}">
+                            <i class="fa fa-trash fa-lg" aria-hidden="true"></i>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </th:block>
+    </div>
+</div>
+</body>
+</html>

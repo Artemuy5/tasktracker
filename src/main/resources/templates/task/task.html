@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>Task</title>
+    <link rel="stylesheet" th:href="@{/css/taskPageStyle.css}" type="text/css"/>
+</head>
+
+<body>
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-md-7">
+            <div id="content" class="current_task">
+                <h2 class="caption" th:text="${task.taskName}"></h2>
+                <p class="text_task" th:text="${task.text}"></p>
+                <p class="status_task" th:text="${task.status.statusName}"></p>
+
+                <div class="buttons">
+                    <a href="#" th:onclick="|leaveComment(${task.id})|" class="btn btn-default submit_button"
+                       th:text="#{add.reference.comment}"></a>
+
+                    <a sec:authorize="hasRole('MANAGER')" class="btn btn-default delete_task" th:href="@{|/task/${task.id}/remove|}"
+                       th:text="#{delete.task}"></a>
+                </div>
+
+                <div class="hidden" th:id="|comment-${task.id}|">
+                    <textarea th:placeholder="#{leave.your.comment}" class="form-control myTextarea" rows="6"></textarea>
+
+                    <div>
+                        <button type="button" class="btn btn-default submit_button"
+                                th:onclick="|sendComment(${task.id})|"
+                                th:text="#{add.reference.comment}">
+                        </button>
+                        <button type="button" class="btn btn-default delete_task"
+                                th:onclick="|cancelComment(${task.id})|" th:text="#{cancel.comment}">
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-5">
+            <div class="block_comments">
+                <th:block th:if="${!task.comments.isEmpty()}">
+                    <div class="comments_window">
+                        <th:block th:each="comment : ${task.comments}">
+                            <input type="hidden" name="id" th:value="${comment.id}"/>
+
+                            <div class="comment_wrapper">
+                                <div class="comment_text">
+                                    <i class="fa fa-comment-o" aria-hidden="true"></i>
+                                    <h6 th:text="${comment.text}"></h6>
+                                </div>
+
+                                <div class="comment_date_author">
+                                    <i class="fa fa-user-o" aria-hidden="true"></i>
+                                    <h6 th:text="|#{added.by} ${comment.dateAdded}|"></h6> <!--${comment.user.username}-->
+                                </div>
+
+                                <a th:href="@{|/comment/${comment.id}/remove|}"> <!--th:if="${#authentication.name == comment.user.username}"-->
+                                    <i class="fa fa-trash remove_comment" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </th:block>
+                    </div>
+                </th:block>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

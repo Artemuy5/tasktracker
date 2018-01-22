@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" th:href="@{/css/loginAndRegistration.css}" type="text/css"/>
+</head>
+<body>
+<div layout:fragment="content">
+    <div th:if="${param.error}">
+        <h3 class="alert alert-danger">
+            <strong th:text="#{invalid.username.password}"></strong>
+        </h3>
+    </div>
+    <div th:if="${param.logout}">
+        <h3 class="alert alert-info">
+            <strong th:text="#{you.have.been.logged.out}"></strong>
+        </h3>
+    </div>
+
+    <div class="login_registration_form">
+        <h3 class="caption_login_registration_form" th:text="#{login.title}"></h3>
+
+        <form th:action="@{/login}" method="post">
+            <label for="username" class="login_registration_labels" th:text="#{login.form.username}"></label>
+            <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></div>
+                <input type="text" id="username" class="form-control" th:placeholder="#{login.form.username}"
+                       th:required="required_field" autocomplete="off" name="username"/>
+            </div>
+
+            <label for="password" class="login_registration_labels" th:text="#{login.form.password}"></label>
+            <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-unlock-alt pass_icon" aria-hidden="true"></i></div>
+                <input type="password" id="password" class="form-control" th:placeholder="#{login.form.password}"
+                       th:required="required_field" autocomplete="off" name="password"/>
+            </div>
+            <button type="submit" class="btn btn-default submit_button" th:text="#{login.title}"></button>
+        </form>
+
+    </div>
+</div>
+</body>
+</html>
