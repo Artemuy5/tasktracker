@@ -7,4 +7,4 @@ Logins and passwords to look into the data.sql file.
 
 This project include technology such as: Spring Boot, Spring Security, Hibernate, MySQL, JQuery, HTML, CSS, Thymeleaf, Lombok.
 
-In order to run the project, you must set up a connection to the MySQL database in the application.properties. 
+In order to run the project, you must set up a connection to the MySQL database in the application.properties and create the schema 'tracker'. 
