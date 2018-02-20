@@ -1,3 +1,5 @@
+CREATE SCHEMA IF NOT EXISTS tracker;
+
 ALTER TABLE tracker.users CHANGE COLUMN enabled enabled BOOLEAN;
 
 /*roles*/
@@ -77,7 +79,7 @@ VALUES ('5', 'Test task', 'bla bla bla', '1', '1', NULL);
 
 
 /*comments*/
-INSERT INTO tracker.comments(id, text, task_id, user_id) VALUES ('1', 'First test comment', '1', '1');
+/*INSERT INTO tracker.comments(id, text, task_id, user_id) VALUES ('1', 'First test comment', '1', '1');*/
 
 
 /*users*/

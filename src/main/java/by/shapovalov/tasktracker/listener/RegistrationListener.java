@@ -19,7 +19,7 @@ import java.util.UUID;
  */
 
 @Component
-public class RegistrationListener implements ApplicationListener<OnRegistrationCompleteEvent> {
+public class  RegistrationListener implements ApplicationListener<OnRegistrationCompleteEvent> {
     private UserService service;
     private MessageSource messages;
     private JavaMailSender mailSender;
@@ -28,7 +28,7 @@ public class RegistrationListener implements ApplicationListener<OnRegistrationC
     @Value("${support.email}")
     String from;
 
-    public RegistrationListener(UserService service, MessageSource messages, JavaMailSender mailSender, SimpleMailMessage simpleMailMessage, JavaMailSender javaMailSender, SimpleMailMessage simpleMailMessage1) {
+    public RegistrationListener(UserService service, MessageSource messages, JavaMailSender mailSender, SimpleMailMessage simpleMailMessage1) {
         this.service = service;
         this.messages = messages;
         this.mailSender = mailSender;
